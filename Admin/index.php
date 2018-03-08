@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+if(!(isset($_SESSION['username'])))
+{
+    header("Location: login.php");
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +20,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Coderscrew - Admin Panel</title>
+  <title>Admin Panel</title>
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -62,33 +73,7 @@
 </script>
 <script src="//cdn.ckeditor.com/4.5.9/full/ckeditor.js"></script>
 <style type="text/css">
-.errormsg{
 
-color:#FF0000;
-
-font-size:9px;
-
-font-weight:bold;
-
-}
-
-#errmsgbox{
-
-border:dotted #FFCC66 1px;
-
-background-color:#FFFFCC;
-
-width:400px;
-
-height:30px;
-
-color:#FF0000;
-
-font-size:15px;
-
-font-weight:bold;
-
-}
 </style>
 </head>
 
@@ -103,7 +88,7 @@ font-weight:bold;
       </div>
 
       <!--logo start-->
-      <a href="index.php" class="logo">Coders <span class="lite">Crew</span></a>
+      <a href="index.php" class="logo">LO <span class="lite">GO</span></a>
       <!--logo end-->
 
    
@@ -399,7 +384,7 @@ font-weight:bold;
             Licensing information: https://bootstrapmade.com/license/
             Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
           -->
-          <a href="#">Coderscrew</a>
+          <a href="#"></a>
         </div>
       </div>
     </section>

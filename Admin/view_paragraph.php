@@ -36,7 +36,15 @@ echo $numbers['chapter_title'];
 <td><?php echo $rows['para_description'] ;  ?></td>
 <td><?php echo $rows['para_keywords'] ;  ?></td>
 <td><?php echo $rows['content'] ;  ?></td>
-<td><?php echo $rows['visible'] ;  ?></td>
+<td><?php $visiblity=$rows['visible'] ; 
+if($visiblity == 1){
+	echo "Yes";
+}else{
+	echo "No";
+}
+
+
+ ?></td>
 <td><a href="index.php?id=edit_paragraph&parag_no=<?php echo $rows['para_no'] ;  ?>&chapter_no=<?php echo $rows['chapter_no'] ;  ?>"><img src="img/edit.png"></a></td>
 <td><a onclick="return confirmDel()"  href="delete_paragraph.php?para_no=<?php echo $rows['para_no'] ;  ?>&chapter=<?php echo $rows['chapter_no'] ;  ?>"><img src="img/delete.png"></a></td>
 </tr>

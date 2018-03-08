@@ -26,45 +26,60 @@
           <a href="#">LOGO
           </a>
         </div>
-        <ul class="nav navbar-nav">
+		        <div >
+          <ul class="nav navbar-nav">
           <!-- Dropdown -->
           <li class="nav-item">
             <a class="nav-link" href="index.php?"> Courses
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"> Topic 1
+		  </ul>
+        </div>
+        
+                    
+		  <?php
+		  include ('Admin/db.php');
+		   $query="SELECT * FROM topics";
+		   $results=mysqli_query($con, $query);
+		   //$rows=mysqli_fetch_array($results);
+		   $cont=mysqli_num_rows($results);
+		    while($rows=mysqli_fetch_assoc($results)){
+				?>
+                          <ul class="nav navbar-nav">
+			  <li class="nav-item">
+            <a class="nav-link" href="index.php?topic_no=<?php echo $rows['topic_no']  ?>"> <?php echo "TOPIC".' '.$rows['topic_no']  ?>
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"> Topic 2
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"> Topic 3
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"> Topic 4
-            </a>
-          </li>
-		  <li class="nav-item">
-            <a class="nav-link" href="Admin/login.php"> Admin Login
-            </a>
-          </li>
-        </ul>
+          </li></ul>
+		  <?php
+                                   }
+		   
+            ?>
+			
+
+		
       </nav>
       <!-- /.Navbar -->
     </header>
     <!--Main Navigation-->
     <!--Main layout-->
+	<?php
+	error_reporting("E_NOTICE");
+	$topic= $_GET['topic_no'];
+	$chap=$_GET['chapno'];
+	$para=$_GET['para_no'];
+	$query1="SELECT * FROM chapters WHERE topic_no='$topic'";
+	$result1=mysqli_query($con, $query1);
+	
+	//var_dump($rowx);
+	
+	?>
     <div class="col-lg-12">
       <div class="bread_crumb">
         <a class="step_crumb" href="#">Home</a>
 		<i class="fa fa-angle-right"></i>
-        <a class="step_crumb" href="#">Chapter 1</a>
+        <a class="step_crumb" href="#"><?php echo "Chapter".''.$chap  ?></a>
 		<i class="fa fa-angle-right"></i>
-        <a class="step_crumb" href="#">Paragraph 3</a>
+        <a class="step_crumb" href="#"><?php echo "Paragraph".''.$para  ?></a>
       </div>
     </div>
     <main>
@@ -76,191 +91,93 @@
             <!-- First col -->
             <div class="col-sm-3 col-md-3">
               <div class="panel-group left-menu" id="accordion">
+			  <?php
+				//$count=
+				while($rowx=mysqli_fetch_assoc($result1)){
+					$chapter=$rowx['chapter_no'];
+					//echo $chapter;
+				?>
+				
                 <div class="panel panel-default">
+				
                   <div class="panel-heading">
                     <h4 class="panel-title">
                       <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
                         <span class="glyphicon glyphicon-th">
-                        </span>Chapter 1
+                        </span><?php echo "Chapter".' '.$chapter; ?>
                       </a>
                     </h4>
                   </div>
+				  
+				 
                   <div id="collapseOne" class="panel-collapse collapse in">
                     <div class="panel-body">
+					<?php
+				 $qry="SELECT * FROM paragraphs WHERE chapter_no='$chapter'";
+	             $res=mysqli_query($con, $qry);
+				 while($rs=mysqli_fetch_assoc($res)){
+					//$para_no=$rowx['para_no'];
+					
+				 
+				 ?>
                       <table class="table">
                         <tr>
                           <td>
-                            <a href="#">Paragraph 1
+                            <a href="index.php?para_no=<?php echo $rs['para_no']; ?>&topic_no=<?php echo $topic; ?>&chapno=<?php echo $chapter; ?>"> <?php echo "Paragraph".' '. $rs['para_no']; ?> 
                             </a>
                           </td>
                         </tr>
-                        <tr>
-                          <td>
-                            <a href="#">Paragraph 2
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#">Paragraph 3
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#">Paragraph 4
-                            </a>
-                          </td>
-                        </tr>
+                                     
+                        
                       </table>
+					   <?php
+				 }
+				  ?>
                     </div>
                   </div>
+				 
                 </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                        <span class="glyphicon glyphicon-th">
-                        </span>Chapter 2
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapseTwo" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <table class="table">
-                        <tr>
-                          <td>
-                            <a href="#">Paragraph 1
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#">Paragraph 2
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#">Paragraph 3
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#">Paragraph 4
-                            </a>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                        <span class="glyphicon glyphicon-th">
-                        </span>Chapter 3
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapseThree" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <table class="table">
-                        <tr>
-                          <td>
-                            <a href="#">Paragraph 1
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#">Paragraph 2
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#">Paragraph 3
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#" class="text-danger">Paragraph 4
-                            </a>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    <h4 class="panel-title">
-                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
-                        <span class="glyphicon glyphicon-th">
-                        </span>Chapter 4
-                      </a>
-                    </h4>
-                  </div>
-                  <div id="collapseFour" class="panel-collapse collapse">
-                    <div class="panel-body">
-                      <table class="table">
-                        <tr>
-                          <td>
-                            <a href="#">Paragraph 1
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#">Paragraph 2
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#">Paragraph 3
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <a href="#">Paragraph 4
-                            </a>
-                          </td>
-                        </tr>
-                      </table>
-                    </div>
-                  </div>
-                </div>
+				 <?php
+				}
+				  
+				  ?>
+               
+             
               </div>
             </div>
             <div class="col-lg-6">
+			<?php $para_no= $_GET['para_no'] ;
+			
+			   $qrys="SELECT * FROM paragraphs WHERE para_no='$para_no' AND chapter_no='$chapter' AND visible='1'";
+	             $ress=mysqli_query($con, $qrys);
+				 ?>
               <!-- First card -->
               <!-- /.First card -->
               <!-- Second card -->
+			  <?php
+				while($rss=mysqli_fetch_assoc($ress)){
+					
+							
+			    ?>
               <div class="card_body mb-r">
                 <div class="col-md-12 " style="margin: 0 !important;padding: 0 !important;">
+				
+				
                   <div class="row">
                     <div class="col-md-12">
                       <div class="card-body">
-                        <h4 class="text-center title_text">Paragraph 3
+                        <h4 class="text-center title_text"><?php echo "Paragraph".' '.$para_no.':'.$rss['para_title'];  ?> 
                         </h4>
                       </div>
                     </div>
                   </div>
+				
                 </div>
                 <div class="card-body article_text">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.</p>
-				  <p>
-				  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.  nt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <p>
-				  Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.nt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip consequat.</p>
+                  <?php echo $rss['content'];  ?> 
                 </div>
               </div>
+			  <?php  }   ?>
               <div class="card mb-r ">
                 <img src="https://ps.w.org/ad-widget/assets/banner-772x250.png?rev=1652352" class="img-fluid">
               </div>

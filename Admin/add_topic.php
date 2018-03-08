@@ -1,5 +1,5 @@
 
-    <body>
+    <body class="col-md-12s">
         <?php //include 'includes/nav.php'; ?>
         
         <div class="container">

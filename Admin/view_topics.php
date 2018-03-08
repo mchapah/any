@@ -3,7 +3,7 @@
 <div class="table responsive">
 <thead>
 <tr>
-<th>Topic No</th>
+<th>Topic Order</th>
 <th>Topic Name</th>
 <th>Topic Description</th>
 <th>Topic Visibility</th>
@@ -24,7 +24,15 @@ while($rows=mysqli_fetch_array($res)){
 <td><?php echo $rows['topic_no'] ;  ?></td>
 <td><?php echo $rows['topic_name'] ;  ?></td>
 <td><?php echo $rows['topic_description'] ;  ?></td>
-<td><?php echo $rows['visible'] ;  ?></td>
+<td><?php $visiblity=$rows['visible'] ; 
+if($visiblity == 1){
+	echo "Yes";
+}else{
+	echo "No";
+}
+
+
+ ?></td>
 <td><a href="index.php?id=edit_topic&topic_no=<?php echo $rows['topic_no'] ;  ?>"><img src="img/edit.png"></a></td>
 <td><a onclick="return confirmDel()"  href="delete_topic.php?topic_no=<?php echo $rows['topic_no'] ;  ?>"><img src="img/delete.png"></a></td>
 </tr>

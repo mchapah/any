@@ -32,7 +32,15 @@ echo $numbers['topic_name'];
  ?></td>
 <td><?php echo $rows['chapter_title'] ;  ?></td>
 <td><?php echo $rows['chapter_description'] ;  ?></td>
-<td><?php echo $rows['visible'] ;  ?></td>
+<td><?php $visiblity=$rows['visible'] ; 
+if($visiblity == 1){
+	echo "Yes";
+}else{
+	echo "No";
+}
+
+
+ ?></td>
 <td><a href="index.php?id=edit_chapter&chapter_no=<?php echo $rows['chapter_no'] ;  ?>&topic_no=<?php echo $rows['topic_no'] ;  ?>"><img src="img/edit.png"></a></td>
 <td><a onclick="return confirmDel()"  href="delete_chapter.php?topic_no=<?php echo $rows['topic_no'] ;  ?>&chapter=<?php echo $rows['chapter_no'] ;  ?>"><img src="img/delete.png"></a></td>
 </tr>

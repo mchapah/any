@@ -34,26 +34,16 @@ $_SESSION['usertype']=$row['usertype'];
 
 
  
-if(mysqli_num_rows($result) == 1)
+if(mysqli_num_rows($result) > 0)
 {
        
-        $_SESSION['username']= $username;
-    if($_SESSION['usertype']=="student"){
-       $_SESSION['username'] = $row['username']; // Initializing Session
-
-       header("location: student-dashboard.php"); // Redirecting To Other Page
-    }
-    elseif ($_SESSION['usertype']=="admin") {
-        header("location: index.php"); // Redirecting To Other Page
-    
-      }
- else {
-          echo 'sorry';
-      }
-    
+   $_SESSION['username']= $username;
+    header("location: index.php"); // Redirecting To Other Page
+ 
 }else
 {
 $error = "Incorrect username or password.";
+header("location: login.php?error='".$error."'");
 }
 
 }
