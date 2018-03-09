@@ -1,4 +1,12 @@
  <?php
+ 
+ /* $URL= explode("/", $_SERVER['QUERY_STRING'] );
+ echo "<pre>";
+ print_r($URL);
+ 
+ echo "</pre>"; */
+ 
+ 
 		  include ('Admin/db.php');
 		   $query="SELECT * FROM topics WHERE visible='1'";
 		   $results=mysqli_query($con, $query);

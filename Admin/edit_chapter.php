@@ -30,7 +30,7 @@
 					                 chapter_title='$chapter_title',
                                      chapter_description='$chapter_desc',
                                      visible='$visible'
-                                     WHERE chapter_id='$chapno' AND topic_no='$topno'";
+                                     WHERE chapter_id='$chapno'";
                           $results3= mysqli_query($con, $sql2);
 						  header('Location:index.php?id=edit_chapter&topic_no='.$topno.'&chapter_id='.$chapno.'');
 					   
