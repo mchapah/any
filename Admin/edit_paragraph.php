@@ -31,18 +31,7 @@
 					  $result1=mysqli_query($con, $query1);
 					  $nums=mysqli_num_rows($result1);
 					  
-					  $query2="SELECT * FROM paragraphs WHERE para_title='$para_title' AND para_no='$para_number' AND chapter_no='$chapter'";
-					  $result2=mysqli_query($con, $query2); 
-                      $num=mysqli_num_rows($result2);					  
-					  if($nums > 0){
-						  $message=urlencode("Duplicate entry for Paragraph number ".$para_number." ");
-	                      header('Location:index.php?id=edit_paragraph&parag_no='.$parno.'&chapter_no='.$chno.'&message='.$message);
-					  }
-					 elseif($num > 0){
-						  $message=urlencode("Duplicate entry for Paragraph  ".$para_title." ");
-	                      header('Location:index.php?id=edit_paragraph&parag_no='.$parno.'&chapter_no='.$chno.'&message='.$message);
-					  }
-					else{  
+					  
 
 					 $sql2= "UPDATE paragraphs SET 
 						             para_no='$para_number',
@@ -55,7 +44,7 @@
                           $results3= mysqli_query($con, $sql2);
 						  header('Location:index.php?id=edit_paragraph&parag_no='.$parno.'&chapter_no='.$chno.'');
 					   
-					} 
+					
                         
 						
                         
@@ -165,7 +154,7 @@
 									}
 									else{
 										?>
-										<input id="visible" name="visible" type="checkbox" value="1" class="form-control input-md">
+										<input id="visible" name="visible" type="checkbox" value="" class="form-control input-md">
 										<?php
 									}
 									

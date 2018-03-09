@@ -21,25 +21,8 @@
                         $description = $_POST['topic_desc'];
                         $order = $_POST['topic_order'];
                         $visible=$_POST['visible'];
-						
-					  $query1="SELECT * FROM topics WHERE topic_no='$order'";
-					  $result1=mysqli_query($con, $query1);
-					  $nums=mysqli_num_rows($result1);
-					  
-					  $query2="SELECT * FROM topics WHERE topic_name='$topic' AND topic_no='$order'";
-					  $result2=mysqli_query($con, $query2); 
-                      $num=mysqli_num_rows($result2);					  
-					  if($nums > 0){
-						  $message=urlencode("Duplicate entry for topic number ".$order." ");
-	                      header('Location:index.php?id=add_topic&&message='.$message);
-					  }
-					 elseif($num > 0){
-						  $message=urlencode("Duplicate entry for topic  ".$topic." ");
-	                      header('Location:index.php?id=add_topic&&message='.$message);
-					  }
-					else{  
-
-					  
+						//var_dump($visible); die();
+					  			  
                    
 						 $sql2= "UPDATE topics SET 
 					                topic_no='$order',
@@ -50,8 +33,7 @@
                           $results3= mysqli_query($con, $sql2);
 						  header('Location:index.php?id=view_topic');
 					   
-					} 
-						
+				
 						
              		   
 					  

@@ -22,26 +22,11 @@
                         $chapter_title = $_POST['chapter_title'];
                         $chapter_desc = $_POST['chapter_desc'];
                         $visible=$_POST['visible'];
-						$query1="SELECT * FROM chapters WHERE chapter_no='$chapter_number' AND topic_no='$topic'";
-					  $result1=mysqli_query($con, $query1);
-					  $nums=mysqli_num_rows($result1);
-					  
-					  $query2="SELECT * FROM chapters WHERE chapter_title='$chapter_title' AND topic_no='$topic' AND chapter_no='$chapter_number'";
-					  $result2=mysqli_query($con, $query2); 
-                      $num=mysqli_num_rows($result2);					  
-					  if($nums > 0){
-						  $message=urlencode("Duplicate entry for Chapter number ".$chapter_number." ");
-	                      header('Location:index.php?id=edit_chapter&chapter_id='.$chapno.'&topic_no='.$topno.'&message='.$message);
-					  }
-					 elseif($num > 0){
-						  $message=urlencode("Duplicate entry for chapter  ".$chapter_title." ");
-	                      header('Location:index.php?id=edit_chapter&chapter_id='.$chapno.'&topic_no='.$topno.'&message='.$message);
-					  }
-					else{  
-
-					  
+						
+					  //var_dump($topic); die();
                    $sql2= "UPDATE chapters SET 
 					                 chapter_no='$chapter_number',
+									 topic_no='$topic',
 					                 chapter_title='$chapter_title',
                                      chapter_description='$chapter_desc',
                                      visible='$visible'
@@ -49,7 +34,7 @@
                           $results3= mysqli_query($con, $sql2);
 						  header('Location:index.php?id=edit_chapter&topic_no='.$topno.'&chapter_id='.$chapno.'');
 					   
-					} 
+					
              		  
 					  
 					 
