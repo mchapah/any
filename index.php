@@ -146,10 +146,12 @@
               </div>
             </div>
             <div class="col-lg-6">
-			<?php $para_no= $_GET['para_no'] ;
-			
-			   $qrys="SELECT * FROM paragraphs WHERE para_no='$para_no' AND chapter_no='$chapter' AND visible='1'";
+			<?php 
+			$para_no= $_GET['para_no'] ;
+			//echo $para_no;
+			   $qrys="SELECT * FROM paragraphs WHERE para_no='$para_no' AND chapter_no='$chap' AND visible='1'";
 	             $ress=mysqli_query($con, $qrys);
+				 
 				 ?>
               <!-- First card -->
               <!-- /.First card -->
@@ -208,15 +210,15 @@
                 </div>
                 <!--/.Card content-->
               </div>
-              <!--Card-->
+              <!--Card
               <div class="card_body card-cascade narrower mb-r">
-                <!--Card image-->
+                <!--Card image
                 <div class="view gradient-card-header blue-gradient">
                   <h4 class="mb-0 related-title">Related Topics
                   </h4>
                 </div>
-                <!--/Card image-->
-                <!--Card content-->
+                <!--/Card image
+                <!--Card content
                 <div class="card-body">
                   <a href="#">Topic 3
                   </a>  
@@ -237,7 +239,7 @@
                   </a>  
                   <br/>
                 </div>
-                <!--/.Card content-->
+                <!--/.Card content
               </div>
               <!--/.Card-->
             </div>
