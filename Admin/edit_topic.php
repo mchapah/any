@@ -26,7 +26,7 @@
 					  $result1=mysqli_query($con, $query1);
 					  $nums=mysqli_num_rows($result1);
 					  
-					  $query2="SELECT * FROM topics WHERE topic_name='$topic'";
+					  $query2="SELECT * FROM topics WHERE topic_name='$topic' AND topic_no='$order'";
 					  $result2=mysqli_query($con, $query2); 
                       $num=mysqli_num_rows($result2);					  
 					  if($nums > 0){
