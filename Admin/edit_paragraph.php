@@ -23,7 +23,7 @@
 						$keywords=$_POST['para_keywords'];;
                         $keySplit= explode(",", $keywords);
                         
-                         //var_dump($para_number); die();
+                         //var_dump($chapter); die();
 						$content =mysqli_real_escape_string($con,$_POST["myeditor"]);
                         $visible=$_POST['visible'];
 						
@@ -35,14 +35,15 @@
 
 					 $sql2= "UPDATE paragraphs SET 
 						             para_no='$para_number',
+									 chapter_no='$chapter',
 					                 para_title='$para_title',
                                      para_description='$para_desc',
 									 para_keywords='" . implode(',', $keySplit) . "',
 									 content='$content',
 									 visible='$visible'
-                                     WHERE id='$parno' AND chapter_no='$chno'";
+                                     WHERE id='$parno'";
                           $results3= mysqli_query($con, $sql2);
-						  header('Location:index.php?id=edit_paragraph&parag_no='.$parno.'&chapter_no='.$chno.'');
+						  header('Location:index.php?id=view_paragraph&parag_no='.$parno.'&chapter_no='.$chno.'');
 					   
 					
                         

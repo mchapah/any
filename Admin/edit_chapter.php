@@ -32,7 +32,7 @@
                                      visible='$visible'
                                      WHERE chapter_id='$chapno'";
                           $results3= mysqli_query($con, $sql2);
-						  header('Location:index.php?id=edit_chapter&topic_no='.$topno.'&chapter_id='.$chapno.'');
+						  header('Location:index.php?id=view_chapter&topic_no='.$topno.'&chapter_id='.$chapno.'');
 					   
 					
              		  
