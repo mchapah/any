@@ -1,8 +1,7 @@
 <?php
 
 session_start();
-echo "hahahaha
-";
+
 if(!(isset($_SESSION['username'])))
 {
     $error = "You must login to access this area";
@@ -60,9 +59,14 @@ if(!(isset($_SESSION['username'])))
     return confirm("Are you sure want remove spouse?");
 } */
 
- function confirmDel()
+ function confirmDelt()
 {
-    return confirm("Are you sure want to delete?");
+    return confirm("Are you sure want to delete? Deleting this will  delete all documentation related to this topic");
+}
+
+function confirmDel()
+{
+    return confirm("Are you sure want to delete? Deleting this will automatically delete all other records documented under it");
 }
   
   
@@ -132,6 +136,8 @@ if(!(isset($_SESSION['username'])))
               
             </ul>
           </li>
+
+		  
 		  <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="icon_genius"></i>
@@ -238,7 +244,8 @@ if(!(isset($_SESSION['username'])))
                             break;
                         case 'edit_topic':
 						      $number=$_GET['topic_no'];
-						      $sql1="SELECT * FROM topics WHERE topic_no='$number' ";
+						      $sql1="SELECT * FROM topics WHERE topic_id='$number' ";
+							  //echo $sql1;
 						     $results= mysqli_query($con, $sql1);
 						     $rows=mysqli_fetch_array($results);
                            include('edit_topic.php');
@@ -294,9 +301,23 @@ if(!(isset($_SESSION['username'])))
                            include('view_chapters.php');
                             break;
                          case 'edit_chapter':
+						 ?>
+						 <div id="errmsgbox">
+                           <div id="divError" class="divError"><span> 
+	                       <?php
+	                       if( !empty( $_REQUEST['message'] ) )
+                                {
+                                  echo sprintf( '<p>%s</p>', $_REQUEST['message'] );
+                                }
+	
+	                          ?>	
+	                     </span></div>
+
+                         </div>
+						 <?php
 						     $topic_no=$_GET['topic_no'];
-							 $chapter=$_GET['chapter_no'];
-						     $sql2="SELECT * FROM chapters WHERE chapter_no='$chapter' AND topic_no='$topic_no' ";
+							 $chapterid=$_GET['chapter_id'];
+						     $sql2="SELECT * FROM chapters WHERE chapter_id='$chapterid' AND topic_no='$topic_no' ";
 						     $results1= mysqli_query($con, $sql2);
 						     $rowss=mysqli_fetch_array($results1);
                            include('edit_chapter.php');
@@ -352,9 +373,31 @@ if(!(isset($_SESSION['username'])))
                       include('view_paragraph.php');
                             break;
                         case 'edit_paragraph':
-                             $para_no=$_GET['parag_no'];
+						?>
+						<div class="row">
+                            <div class="col-lg-12">
+                               <ol class="breadcrumb">
+                               <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+                               <li><i class="fa fa-laptop"></i>Edit Paragraph</li>
+                               </ol>
+                            </div>
+                        </div>
+		                <div id="errmsgbox">
+                           <div id="divError" class="divError"><span> 
+	                       <?php
+	                       if( !empty( $_REQUEST['message'] ) )
+                                {
+                                  echo sprintf( '<p>%s</p>', $_REQUEST['message'] );
+                                }
+	
+	                          ?>	
+	                     </span></div>
+
+                         </div>
+						 <?php
+                             $para_id=$_GET['parag_no'];
 							 $chapter_no=$_GET['chapter_no'];
-						     $sql3="SELECT * FROM paragraphs WHERE para_no='$para_no' AND chapter_no='$chapter_no' ";
+						     $sql3="SELECT * FROM paragraphs WHERE id='$para_id' AND chapter_no='$chapter_no' ";
 						     $results2= mysqli_query($con, $sql3);
 						     $rowx=mysqli_fetch_array($results2);
                            include('edit_paragraph.php');

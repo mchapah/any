@@ -1,10 +1,19 @@
+ <?php
+		  include ('Admin/db.php');
+		   $query="SELECT * FROM topics WHERE visible='1'";
+		   $results=mysqli_query($con, $query);
+		   //$rows=mysqli_fetch_array($results);
+		   $cont=mysqli_num_rows($results);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Project
+    <title>Paragraph - Chapter| Topic
     </title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -37,13 +46,9 @@
         </div>
         
                     
-		  <?php
-		  include ('Admin/db.php');
-		   $query="SELECT * FROM topics";
-		   $results=mysqli_query($con, $query);
-		   //$rows=mysqli_fetch_array($results);
-		   $cont=mysqli_num_rows($results);
+		 <?php
 		    while($rows=mysqli_fetch_assoc($results)){
+				
 				?>
                           <ul class="nav navbar-nav">
 			  <li class="nav-item">
@@ -67,12 +72,14 @@
 	$topic= $_GET['topic_no'];
 	$chap=$_GET['chapno'];
 	$para=$_GET['para_no'];
-	$query1="SELECT * FROM chapters WHERE topic_no='$topic'";
+	$query1="SELECT * FROM chapters WHERE topic_no='$topic' AND visible='1' order by chapter_no asc";
 	$result1=mysqli_query($con, $query1);
-	
-	//var_dump($rowx);
-	
-	?>
+	$count=mysqli_num_rows($results1);
+	//var_dump($result1);
+	if($count > 0){
+		
+?>
+    
     <div class="col-lg-12">
       <div class="bread_crumb">
         <a class="step_crumb" href="#">Home</a>
@@ -82,6 +89,9 @@
         <a class="step_crumb" href="#"><?php echo "Paragraph".''.$para  ?></a>
       </div>
     </div>
+	<?php
+	}
+	?>
     <main>
       <div class="col-md-12">
         <!-- Section: Create Page -->
@@ -179,7 +189,7 @@
                   <?php echo $rss['content'];  ?> 
                 </div>
               </div>
-			  <?php  }   ?>
+<?php  }    ?>
               <div class="card mb-r ">
                 <img src="https://ps.w.org/ad-widget/assets/banner-772x250.png?rev=1652352" class="img-fluid">
               </div>

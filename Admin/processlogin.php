@@ -42,7 +42,7 @@ if(mysqli_num_rows($result) > 0)
  
 }else
 {
-$error = "Incorrect username or password.";
+$error = "Incorrect username or password";
 header("location: login.php?error='".$error."'");
 }
 

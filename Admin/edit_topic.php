@@ -11,22 +11,49 @@
 					
 					
                     If (isset($_POST['button1id'])) {
-						$topicnumber=$_GET['no'];
+						$topicid=$_GET['no'];
 						
-						//var_dump($topicnumber);
+					//var_dump($topicid); die();
                         error_reporting("E_NOTICE");
+						
                         $topic = $_POST['topic_name'];
                     //$course_category = $_POST['category'];
                         $description = $_POST['topic_desc'];
                         $order = $_POST['topic_order'];
                         $visible=$_POST['visible'];
-             		  $sql2= "UPDATE topics SET 
+						
+					  $query1="SELECT * FROM topics WHERE topic_no='$order'";
+					  $result1=mysqli_query($con, $query1);
+					  $nums=mysqli_num_rows($result1);
+					  
+					  $query2="SELECT * FROM topics WHERE topic_name='$topic'";
+					  $result2=mysqli_query($con, $query2); 
+                      $num=mysqli_num_rows($result2);					  
+					  if($nums > 0){
+						  $message=urlencode("Duplicate entry for topic number ".$order." ");
+	                      header('Location:index.php?id=add_topic&&message='.$message);
+					  }
+					 elseif($num > 0){
+						  $message=urlencode("Duplicate entry for topic  ".$topic." ");
+	                      header('Location:index.php?id=add_topic&&message='.$message);
+					  }
+					else{  
+
+					  
+                   
+						 $sql2= "UPDATE topics SET 
+					                topic_no='$order',
                                     topic_name='$topic',
                                      topic_description='$description',
                                      visible='$visible'
-                                     WHERE topic_no='$topicnumber'";
+                                     WHERE topic_id='$topicid'";
                           $results3= mysqli_query($con, $sql2);
-						  header('Location:index.php?id=edit_topic&topic_no='.$topicnumber.'');
+						  header('Location:index.php?id=view_topic');
+					   
+					} 
+						
+						
+             		   
 					  
 					 
                     }
@@ -63,7 +90,7 @@
 
                                 <label class="col-md-4 control-label" for="topic_order">Topic Order</label>  
                                 <div class="col-md-8">
-                                    <input id="topic_order" name="topic_order" type="text" placeholder="Topic Order" class="form-control input-md" value="<?php echo $rows['topic_no']; ?>" required="" readonly="">
+                                    <input id="topic_order" name="topic_order" type="text" placeholder="Topic Order" class="form-control input-md" value="<?php echo $rows['topic_no']; ?>" required="" >
 
                                 </div>
                             </div>

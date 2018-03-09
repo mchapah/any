@@ -45,7 +45,7 @@ if($visiblity == 1){
 
 
  ?></td>
-<td><a href="index.php?id=edit_paragraph&parag_no=<?php echo $rows['para_no'] ;  ?>&chapter_no=<?php echo $rows['chapter_no'] ;  ?>"><img src="img/edit.png"></a></td>
+<td><a href="index.php?id=edit_paragraph&parag_no=<?php echo $rows['id'] ;  ?>&chapter_no=<?php echo $rows['chapter_no'] ;  ?>"><img src="img/edit.png"></a></td>
 <td><a onclick="return confirmDel()"  href="delete_paragraph.php?para_no=<?php echo $rows['para_no'] ;  ?>&chapter=<?php echo $rows['chapter_no'] ;  ?>"><img src="img/delete.png"></a></td>
 </tr>
 <?php

@@ -7,6 +7,9 @@ $chapter=$_GET['chapter'];
 
 $sql3="DELETE FROM chapters WHERE topic_no='$topic' AND chapter_no='$chapter'";
 $results3= mysqli_query($con, $sql3) or die ("Error $sql3.".mysql_error());
+
+$sql4="DELETE FROM paragraphs WHERE chapter_no='$chapter'";
+$results4= mysqli_query($con, $sql4) or die ("Error $sql4.".mysql_error());
 $message=urlencode("Chapter deleted successfully");
 header('Location:index.php?id=view_chapter&topic_no='.$topic.'&chapter_no='.$chapter.'&message='.$message);
 

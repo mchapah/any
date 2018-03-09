@@ -23,58 +23,53 @@
 						$keywords=$_POST['para_keywords'];;
                         $keySplit= explode(",", $keywords);
                         
-                         
+                         //var_dump($para_number); die();
 						$content =mysqli_real_escape_string($con,$_POST["myeditor"]);
                         $visible=$_POST['visible'];
-                        
-						$sql2= "UPDATE paragraphs SET 
+						
+					  $query1="SELECT * FROM paragraphs WHERE para_no='$para_number' AND chapter_no='$chapter'";
+					  $result1=mysqli_query($con, $query1);
+					  $nums=mysqli_num_rows($result1);
+					  
+					  $query2="SELECT * FROM paragraphs WHERE para_title='$para_title' AND para_no='$para_number' AND chapter_no='$chapter'";
+					  $result2=mysqli_query($con, $query2); 
+                      $num=mysqli_num_rows($result2);					  
+					  if($nums > 0){
+						  $message=urlencode("Duplicate entry for Paragraph number ".$para_number." ");
+	                      header('Location:index.php?id=edit_paragraph&parag_no='.$parno.'&chapter_no='.$chno.'&message='.$message);
+					  }
+					 elseif($num > 0){
+						  $message=urlencode("Duplicate entry for Paragraph  ".$para_title." ");
+	                      header('Location:index.php?id=edit_paragraph&parag_no='.$parno.'&chapter_no='.$chno.'&message='.$message);
+					  }
+					else{  
+
+					 $sql2= "UPDATE paragraphs SET 
+						             para_no='$para_number',
 					                 para_title='$para_title',
                                      para_description='$para_desc',
 									 para_keywords='" . implode(',', $keySplit) . "',
 									 content='$content',
 									 visible='$visible'
-                                     WHERE para_no='$parno' AND chapter_no='$chno'";
+                                     WHERE id='$parno' AND chapter_no='$chno'";
                           $results3= mysqli_query($con, $sql2);
 						  header('Location:index.php?id=edit_paragraph&parag_no='.$parno.'&chapter_no='.$chno.'');
-                        
-                     /*  $query1="SELECT * FROM paragraphs WHERE para_no='$para_number' AND chapter_no='$chapter'";
-					  $result1=mysqli_query($con, $query1);
-					  $nums=mysqli_num_rows($result1);
-					  
-					  $query2="SELECT * FROM paragraphs WHERE para_title='$para_title' AND chapter_no='$chapter'";
-					  $result2=mysqli_query($con, $query2); 
-                      $num=mysqli_num_rows($result2);					  
-					  if($nums > 0){
-						  $message=urlencode("Duplicate entry for Paragraph number ".$para_number." ");
-	                      header('Location:index.php?id=add_paragraph&message='.$message);
-					  }
-					 elseif($num > 0){
-						  $message=urlencode("Duplicate entry for Paragraph  ".$para_title." ");
-	                      header('Location:index.php?id=add_paragraph&message='.$message);
-					  }
-					else{  
-
-					 /*  $cnt=count($keySplit);
-					   for($i=0;$i<$cnt;$i++){
-                          $key[]=$keySplit[$i]; 
-						 $sql = "INSERT INTO paragraphs (para_no,chapter_no,para_title,para_description,para_keywords,content,visible)"
-                              . " VALUES('$para_number','$chapter','$para_title','$para_desc','" . implode(',', $keySplit) . "','$content','$visible')";
-							  
-						
-                     mysqli_query($con, $sql) or die(mysqli_error($con));
-					header("Location:index.php?id=add_paragraph"); 
 					   
-					}  */
+					} 
+                        
+						
+                        
+                     
                     }
                     ?>     
 
-                    <form class="form-horizontal" action="edit_paragraph.php?parag_no=<?php echo $para_no; ?>&chapterno=<?php echo $chapter_no; ?>" method="POST" enctype="multipart/form-data">
+                    <form class="form-horizontal" action="edit_paragraph.php?parag_no=<?php echo $para_id; ?>&chapterno=<?php echo $chapter_no; ?>" method="POST" enctype="multipart/form-data">
 
 
                         <fieldset>
 
                             <!-- Form Name -->
-                            <legend>Add Paragraph</legend>
+                            <legend>Edit Paragraph</legend>
 
                             <!-- Text input-->
 							<div class="form-group">

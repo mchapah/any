@@ -34,7 +34,7 @@
 					  }
 					 elseif($num > 0){
 						  $message=urlencode("Duplicate entry for chapter  ".$chapter_title." ");
-	                      header('Location:index.php?id=add_topic&&message='.$message);
+	                      header('Location:index.php?id=add_chapter&&message='.$message);
 					  }
 					else{  
 

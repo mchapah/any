@@ -22,19 +22,41 @@
                         $chapter_title = $_POST['chapter_title'];
                         $chapter_desc = $_POST['chapter_desc'];
                         $visible=$_POST['visible'];
-             		  $sql2= "UPDATE chapters SET 
+						$query1="SELECT * FROM chapters WHERE chapter_no='$chapter_number' AND topic_no='$topic'";
+					  $result1=mysqli_query($con, $query1);
+					  $nums=mysqli_num_rows($result1);
+					  
+					  $query2="SELECT * FROM chapters WHERE chapter_title='$chapter_title' AND topic_no='$topic' AND chapter_no='$chapter_number'";
+					  $result2=mysqli_query($con, $query2); 
+                      $num=mysqli_num_rows($result2);					  
+					  if($nums > 0){
+						  $message=urlencode("Duplicate entry for Chapter number ".$chapter_number." ");
+	                      header('Location:index.php?id=edit_chapter&chapter_id='.$chapno.'&topic_no='.$topno.'&message='.$message);
+					  }
+					 elseif($num > 0){
+						  $message=urlencode("Duplicate entry for chapter  ".$chapter_title." ");
+	                      header('Location:index.php?id=edit_chapter&chapter_id='.$chapno.'&topic_no='.$topno.'&message='.$message);
+					  }
+					else{  
+
+					  
+                   $sql2= "UPDATE chapters SET 
+					                 chapter_no='$chapter_number',
 					                 chapter_title='$chapter_title',
                                      chapter_description='$chapter_desc',
                                      visible='$visible'
-                                     WHERE chapter_no='$chapno' AND topic_no='$topno'";
+                                     WHERE chapter_id='$chapno' AND topic_no='$topno'";
                           $results3= mysqli_query($con, $sql2);
-						  header('Location:index.php?id=edit_chapter&topic_no='.$topno.'&chapter_no='.$chapno.'');
+						  header('Location:index.php?id=edit_chapter&topic_no='.$topno.'&chapter_id='.$chapno.'');
+					   
+					} 
+             		  
 					  
 					 
                     }
                     ?>     
 
-                    <form class="form-horizontal" action="edit_chapter.php?topic=<?php echo $topic_no ?>&chapter=<?php echo $chapter; ?>" method="POST" enctype="multipart/form-data">
+                    <form class="form-horizontal" action="edit_chapter.php?topic=<?php echo $topic_no ?>&chapter=<?php echo $chapterid; ?>" method="POST" enctype="multipart/form-data">
 
 
                         <fieldset>
@@ -81,7 +103,7 @@
 
                                 <label class="col-md-4 control-label" for="chapter_number">Chapter Number</label>  
                                 <div class="col-md-8">
-                                    <input id="chapter_number" name="chapter_number" type="text" placeholder="Chapter Number" class="form-control input-md" value="<?php echo $chapter; ?>" required="">
+                                    <input id="chapter_number" name="chapter_number" type="text" placeholder="Chapter Number" class="form-control input-md" value="<?php echo $rowss['chapter_no']; ?>" required="">
 
                                 </div>
                             </div>

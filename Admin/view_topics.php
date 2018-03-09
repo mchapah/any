@@ -33,8 +33,8 @@ if($visiblity == 1){
 
 
  ?></td>
-<td><a href="index.php?id=edit_topic&topic_no=<?php echo $rows['topic_no'] ;  ?>"><img src="img/edit.png"></a></td>
-<td><a onclick="return confirmDel()"  href="delete_topic.php?topic_no=<?php echo $rows['topic_no'] ;  ?>"><img src="img/delete.png"></a></td>
+<td><a href="index.php?id=edit_topic&topic_no=<?php echo $rows['topic_id'] ;  ?>"><img src="img/edit.png"></a></td>
+<td><a onclick="return confirmDelt()"  href="delete_topic.php?topic_no=<?php echo $rows['topic_no'] ;  ?>"><img src="img/delete.png"></a></td>
 </tr>
 <?php
 }
