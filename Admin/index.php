@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+echo "hahahaha
+";
+if(!(isset($_SESSION['username'])))
+{
+    $error = "You must login to access this area";
+    header("location: login.php?error='".$error."'");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -130,6 +143,12 @@
               <li><a class="" href="index.php?id=view_paragraph">View Paragraphs</a></li>
               
             </ul>
+          </li>
+		   <li>
+            <a class="" href="logout.php">
+                          <i class="icon_genius"></i>
+                          <span>Log Out</span>
+                      </a>
           </li>
          
          
