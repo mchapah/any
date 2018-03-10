@@ -43,9 +43,7 @@
 					  }
 					else{  
 
-					 /*  $cnt=count($keySplit);
-					   for($i=0;$i<$cnt;$i++){
-                          $key[]=$keySplit[$i]; */
+					 
 						 $sql = "INSERT INTO paragraphs (para_no,chapter_no,para_title,para_description,para_keywords,content,visible)"
                               . " VALUES('$para_number','$chapter','$para_title','$para_desc','" . implode(',', $keySplit) . "','$content','$visible')";
 							  

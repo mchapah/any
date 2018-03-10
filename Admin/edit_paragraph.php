@@ -23,9 +23,11 @@
 						$keywords=$_POST['para_keywords'];;
                         $keySplit= explode(",", $keywords);
                         
-                         //var_dump($chapter); die();
+                      
 						$content =mysqli_real_escape_string($con,$_POST["myeditor"]);
                         $visible=$_POST['visible'];
+						
+						   //var_dump($visible); die();
 						
 					  $query1="SELECT * FROM paragraphs WHERE para_no='$para_number' AND chapter_no='$chapter'";
 					  $result1=mysqli_query($con, $query1);
@@ -155,7 +157,7 @@
 									}
 									else{
 										?>
-										<input id="visible" name="visible" type="checkbox" value="" class="form-control input-md">
+										<input id="visible" name="visible" type="checkbox" value="1" class="form-control input-md">
 										<?php
 									}
 									

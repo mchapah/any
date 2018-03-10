@@ -44,9 +44,9 @@
     <!--Main layout-->
 	<?php
 	error_reporting("E_NOTICE");
-	$topic= 1;
-	$chap=   1;
-	$para=  1;
+	$topic= $_GET['topic_no'];
+	$chap=$_GET['chapno'];
+	$para=$_GET['para_no'];
 	$query1="SELECT * FROM chapters WHERE topic_no='$topic' AND visible='1' order by chapter_no asc";
 	$result1=mysqli_query($con, $query1);
 	$count=mysqli_num_rows($results1);
