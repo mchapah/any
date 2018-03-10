@@ -109,7 +109,7 @@
                       <table class="table">
                         <tr>
                           <td>
-                            <a href="index.php?para_no=<?php echo $rs['para_no']; ?>&topic_no=<?php echo $topic; ?>&chapno=<?php echo $chapter; ?>"> <?php echo "Paragraph".' '. $rs['para_no']; ?> 
+                            <a href="chapter.php?para_no=<?php echo $rs['para_no']; ?>&topic_no=<?php echo $topic; ?>&chapno=<?php echo $chapter; ?>"> <?php echo "Paragraph".' '. $rs['para_no']; ?> 
                             </a>
                           </td>
                         </tr>
